@@ -26,7 +26,8 @@ export class SearchBarComponent implements OnInit {
       this.message = "All good!"
       this.searchEvent.emit({
         zipCode: this.zipCode,
-        units: this.units
+        units: this.units,
+        apiRes: null
       })
     }
   }

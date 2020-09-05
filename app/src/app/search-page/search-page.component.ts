@@ -9,7 +9,6 @@ import { SearchQuery } from '../search-query';
 })
 export class SearchPageComponent implements OnInit {
 
-  public apiResponse: any;
   public query: SearchQuery;
 
   constructor(
@@ -23,8 +22,11 @@ export class SearchPageComponent implements OnInit {
     this.weatherApiService.fetchByZipCode(query)
     .subscribe(
       res => {
-        this.apiResponse = res
-        this.query = query
+        this.query = {
+          units: query.units,
+          zipCode: query.zipCode,
+          apiRes: res
+        }
       }
     )
   }

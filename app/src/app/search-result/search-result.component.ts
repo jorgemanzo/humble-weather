@@ -14,15 +14,14 @@ export class SearchResultComponent implements OnInit {
   public humidity: string = ""
   public condition: string = ""
 
-  @Input() query: SearchQuery;
   @Input()
-  set apiResponse(apiRes: any) {
-    if(apiRes && this.query) {
-      const units = this.query.units == "imperial" ? "°F" : "°C"
-      this.city = `Weather for ${apiRes.name}`
-      this.temp = `${apiRes.main.temp}${units}, feels like ${apiRes.main.feels_like}${units}`
-      this.humidity = `Humidity: ${apiRes.main.humidity}%`
-      this.condition = apiRes.weather.main
+  set query(query: SearchQuery) {
+    if(query) {
+      const units = query.units == "imperial" ? "°F" : "°C"
+      this.city = `Weather for ${query.apiRes.name}`
+      this.temp = `${query.apiRes.main.temp}${units}, feels like ${query.apiRes.main.feels_like}${units}`
+      this.humidity = `Humidity: ${query.apiRes.main.humidity}%`
+      this.condition = query.apiRes.weather.main
     }
   }
   constructor(

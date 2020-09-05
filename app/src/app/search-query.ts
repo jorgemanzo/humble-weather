@@ -1,4 +1,5 @@
 export interface SearchQuery {
     zipCode: string,
-    units: string
+    units: string,
+    apiRes: any
 }
