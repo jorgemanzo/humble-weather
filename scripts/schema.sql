@@ -11,15 +11,15 @@ CREATE TABLE locations (
     zipCode VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB, CHARSET=utf8mb4;
 
-CREATE TABLE past_searches (
-    past_search_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE weather_states (
+    weather_states_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     location_id INT NOT NULL,
     CONSTRAINT `fk_location`
         FOREIGN KEY (location_id) REFERENCES locations (location_id)
         ON DELETE CASCADE
         ON UPDATE RESTRICT,
     search_date DATETIME NOT NULL,
-    main VARCHAR(128) NOT NULL,
-    temp VARCHAR(16) NOT NULL,
-    city VARCHAR(64) NOT NULL
+    temp INT NOT NULL,
+    units VARCHAR(1) NOT NULL,
+    humidity INT NOT NULL
 ) ENGINE=InnoDB, CHARSET=utf8mb4;

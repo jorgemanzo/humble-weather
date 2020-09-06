@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherApiService } from '../weather-api.service';
 import { LocationsService } from '../locations.service';
+import { WeatherStatesService } from '../weather-states.service';
 import { SearchQuery } from '../search-query';
+import { ExecutionMessage } from '../execution-message';
 
 @Component({
   selector: 'app-search-page',
@@ -14,13 +16,37 @@ export class SearchPageComponent implements OnInit {
 
   constructor(
     public weatherApiService: WeatherApiService,
-    public locationsService: LocationsService
+    public locationsService: LocationsService,
+    public weatherStatesService: WeatherStatesService
   ) { }
 
   ngOnInit(): void {
   }
 
-  search(query: SearchQuery): void {
+  storeWeatherForLocation (execMsg: ExecutionMessage, query: SearchQuery) : void {
+    this.weatherStatesService.insertWeatherState({
+      locationID: execMsg.ID,
+      temp: Math.floor(query.apiRes.main.temp),
+      units: query.units == "imperial" ? "F" : "C",
+      humidity: query.apiRes.main.humidity
+    }).subscribe(
+      execMsg => {
+        console.log(execMsg)
+      }
+    )
+  }
+
+  createOrSaveLocation (query: SearchQuery) : void {
+    this.locationsService.upsertLocationWithQuery(query)
+    .subscribe(
+      execMsg => {
+        console.log(execMsg)
+        this.storeWeatherForLocation(execMsg, query)
+      }
+    )
+  }
+
+  search (query: SearchQuery) : void {
     this.weatherApiService.fetchByZipCode(query)
     .subscribe(
       res => {
@@ -29,12 +55,7 @@ export class SearchPageComponent implements OnInit {
           zipCode: query.zipCode,
           apiRes: res
         }
-        this.locationsService.upsertLocationWithQuery(this.query)
-        .subscribe(
-          databaseRes => {
-            console.log(databaseRes)
-          }
-        )
+        this.createOrSaveLocation(this.query)
       }
     )
   }

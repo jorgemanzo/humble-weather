@@ -7,18 +7,25 @@ import (
 	"log"
 )
 
-func UpsertLocation(zipCode string) messagetypes.ExecutionMessage {
+type SearchQuery struct {
+	ZipCode string `json:"zipCode"`
+	Main    string `json:"main"`
+	Temp    string `json:"temp"`
+	City    string `json:"city"`
+}
+
+func UpsertLocation(query SearchQuery) messagetypes.ExecutionMessage {
 	resultMessage := messagetypes.ExecutionMessage{
 		Message: "",
 		OK:      true,
 		ID:      -1,
 	}
-	locationRow := mariadb.SelectLocationByZipCode(zipCode)
+	locationRow := mariadb.SelectLocationByZipCode(query.ZipCode)
 	notFound := locationRow.Scan(&(resultMessage.ID))
 	if notFound != nil {
 		// Try to insert
 		log.Print(notFound)
-		lastInsertID, err := mariadb.InsertLocation(zipCode)
+		lastInsertID, err := mariadb.InsertLocation(query.ZipCode)
 		if err != nil {
 			// Something horrible happened
 			log.Print(err)
