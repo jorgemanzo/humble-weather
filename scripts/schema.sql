@@ -4,6 +4,8 @@ GRANT ALL ON *.* TO 'admin'@'127.0.0.1' IDENTIFIED BY 'password' WITH GRANT OPTI
 
 CREATE DATABASE weather_history;
 
+use weather_history;
+
 CREATE TABLE locations (
     location_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     zipCode VARCHAR(50) NOT NULL
