@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherApiService } from '../weather-api.service';
+import { LocationsService } from '../locations.service';
 import { SearchQuery } from '../search-query';
 
 @Component({
@@ -12,7 +13,8 @@ export class SearchPageComponent implements OnInit {
   public query: SearchQuery;
 
   constructor(
-    public weatherApiService: WeatherApiService
+    public weatherApiService: WeatherApiService,
+    public locationsService: LocationsService
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +29,12 @@ export class SearchPageComponent implements OnInit {
           zipCode: query.zipCode,
           apiRes: res
         }
+        this.locationsService.upsertLocationWithQuery(this.query)
+        .subscribe(
+          databaseRes => {
+            console.log(databaseRes)
+          }
+        )
       }
     )
   }

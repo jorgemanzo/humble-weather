@@ -31,7 +31,4 @@ export class SearchResultComponent implements OnInit {
   ngOnInit(): void {
   }
  
-  showResults(): void {
-    console.log(this.apiResponse)
-  }
 }
