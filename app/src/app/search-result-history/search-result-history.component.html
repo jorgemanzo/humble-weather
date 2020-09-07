@@ -1,5 +1,5 @@
 <div class="tableContainer">
-    
+    <h2 *ngIf="showTable()" >Past Weather Data</h2>
     <table 
         mat-table 
         [dataSource]="weatherHistory"

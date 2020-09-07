@@ -1,6 +1,9 @@
 .tableContainer {
   display: flex;
+  flex-flow: column wrap;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
 }
 table {
   width: 364px;
