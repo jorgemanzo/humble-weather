@@ -13,6 +13,8 @@ export class SearchResultComponent implements OnInit {
   public temp: string = ""
   public humidity: string = ""
   public condition: string = ""
+  public zipCode: string = ""
+  public showCard: boolean = false
 
   @Input()
   set query(query: SearchQuery) {
@@ -22,6 +24,8 @@ export class SearchResultComponent implements OnInit {
       this.temp = `${Math.floor(query.apiRes.main.temp)}${units}, feels like ${Math.floor(query.apiRes.main.feels_like)}${units}`
       this.humidity = `Humidity: ${query.apiRes.main.humidity}%`
       this.condition = query.apiRes.weather.main
+      this.zipCode = query.zipCode
+      this.showCard = true
     }
   }
   constructor(
