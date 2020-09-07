@@ -1,15 +1,32 @@
-<p>search-result-history works!</p>
-<table *ngIf="showTable()">
-    <tr>
-        <th>Date</th>
-        <th>Temp</th>
-        <th>Units</th>
-        <th>Humidity</th>
-    </tr>
-    <tr *ngFor="let states of weatherHistory">
-        <td>{{states.date}}</td>
-        <td>{{states.temp}}</td>
-        <td>{{states.units}}</td>
-        <td>{{states.humidity}}</td>
-    </tr>
-</table>
+<div class="tableContainer">
+    
+    <table 
+        mat-table 
+        [dataSource]="weatherHistory"
+        *ngIf="showTable()" 
+        class="mat-elevation-z8 size"
+    >
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Date/Time</th>
+            <td mat-cell *matCellDef="let state">{{state.date}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="temp">
+            <th mat-header-cell *matHeaderCellDef>Temperature</th>
+            <td mat-cell *matCellDef="let state">{{state.temp}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="units">
+            <th mat-header-cell *matHeaderCellDef>Units</th>
+            <td mat-cell *matCellDef="let state">{{state.units}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="humidity">
+            <th mat-header-cell *matHeaderCellDef>Humidity</th>
+            <td mat-cell *matCellDef="let state">{{state.humidity}}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    </table>
+</div>

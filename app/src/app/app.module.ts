@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { SearchResultHistoryComponent } from './search-result-history/search-result-history.component';
+
+import {MatTableModule} from '@angular/material/table'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { SearchResultHistoryComponent } from './search-result-history/search-res
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

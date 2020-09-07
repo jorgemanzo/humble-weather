@@ -8,7 +8,7 @@ import { Weather } from '../weather';
 export class SearchResultHistoryComponent implements OnInit {
 
   @Input() weatherHistory: [Weather]
-  
+  columnsToDisplay = ['date','temp','units','humidity'];
   constructor() { }
 
   ngOnInit(): void {
