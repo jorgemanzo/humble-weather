@@ -1,0 +1,15 @@
+<p>search-result-history works!</p>
+<table *ngIf="showTable()">
+    <tr>
+        <th>Date</th>
+        <th>Temp</th>
+        <th>Units</th>
+        <th>Humidity</th>
+    </tr>
+    <tr *ngFor="let states of weatherHistory">
+        <td>{{states.date}}</td>
+        <td>{{states.temp}}</td>
+        <td>{{states.units}}</td>
+        <td>{{states.humidity}}</td>
+    </tr>
+</table>

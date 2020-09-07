@@ -12,6 +12,7 @@ const mySQLInfo = "admin:password@(127.0.0.1:3306)/weather_history"
 const insertLocationWithZipCode = "INSERT locations (zipCode) VALUES (?)"
 const insertWeatherState = "INSERT weather_states (location_id, search_date, temp, units, humidity) VALUES (?, NOW(), ?, ?, ?)"
 const selectLocationByZipCode = "SELECT location_id FROM locations WHERE zipCode = (?)"
+const selectWeatherStatesByZipCode = "SELECT location_id, temp, units, humidity, search_date FROM weather_states WHERE location_id in (SELECT location_id FROM locations WHERE zipCode = (?))"
 
 func InsertLocation(zipCode string) (int64, error) {
 	db, openErr := sql.Open("mysql", mySQLInfo)
@@ -55,4 +56,14 @@ func SelectLocationByZipCode(zipCode string) *sql.Row {
 	result := db.QueryRow(selectLocationByZipCode, zipCode)
 	db.Close()
 	return result
+}
+
+func SelectWeatherStatesByZipCode(zipCode string) (*sql.Rows, error) {
+	db, openErr := sql.Open("mysql", mySQLInfo)
+	if openErr != nil {
+		log.Fatal("SelectWeatherStatesByZipCode(): ", openErr)
+	}
+	rows, err := db.Query(selectWeatherStatesByZipCode, zipCode)
+	db.Close()
+	return rows, err
 }

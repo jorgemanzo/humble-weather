@@ -23,15 +23,23 @@ export class SearchPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getWeatherHistoryForLocation (query: SearchQuery) : void {
+    this.weatherStatesService.selectWeatherStatesByQuery(query).subscribe(
+      res => console.log(res)
+    )
+  }
+
   storeWeatherForLocation (execMsg: ExecutionMessage, query: SearchQuery) : void {
     this.weatherStatesService.insertWeatherState({
       locationID: execMsg.ID,
       temp: Math.floor(query.apiRes.main.temp),
       units: query.units == "imperial" ? "F" : "C",
-      humidity: query.apiRes.main.humidity
+      humidity: query.apiRes.main.humidity,
+      date: ""
     }).subscribe(
       execMsg => {
         console.log(execMsg)
+        this.getWeatherHistoryForLocation(query)
       }
     )
   }

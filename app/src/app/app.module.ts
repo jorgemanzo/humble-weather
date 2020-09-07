@@ -8,12 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchPageComponent } from './search-page/search-page.component';
+import { SearchResultHistoryComponent } from './search-result-history/search-result-history.component';
 @NgModule({
   declarations: [
     AppComponent,
     SearchBarComponent,
     SearchResultComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    SearchResultHistoryComponent
   ],
   imports: [
     BrowserModule,

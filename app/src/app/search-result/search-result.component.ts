@@ -19,7 +19,7 @@ export class SearchResultComponent implements OnInit {
     if(query) {
       const units = query.units == "imperial" ? "°F" : "°C"
       this.city = `Weather for ${query.apiRes.name}`
-      this.temp = `${query.apiRes.main.temp}${units}, feels like ${query.apiRes.main.feels_like}${units}`
+      this.temp = `${Math.floor(query.apiRes.main.temp)}${units}, feels like ${Math.floor(query.apiRes.main.feels_like)}${units}`
       this.humidity = `Humidity: ${query.apiRes.main.humidity}%`
       this.condition = query.apiRes.weather.main
     }

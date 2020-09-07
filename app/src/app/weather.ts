@@ -2,5 +2,6 @@ export interface Weather {
     locationID: number,
     temp: number,
     units: string,
-    humidity: number
+    humidity: number,
+    date: string
 }

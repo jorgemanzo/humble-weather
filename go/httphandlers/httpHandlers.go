@@ -31,3 +31,11 @@ func InsertWeatherState(w http.ResponseWriter, r *http.Request) {
 	setHeaders(w, "application/json")
 	json.NewEncoder(w).Encode(resultMessage)
 }
+
+func GetWeatherStatesByZipCode(w http.ResponseWriter, r *http.Request) {
+	var query locationsservice.SearchQuery //TODO: Move search query into this file
+	json.NewDecoder(r.Body).Decode(&query)
+	resultMessage := weatherstatesservice.GetWeatherStates(query.ZipCode)
+	setHeaders(w, "application/json")
+	json.NewEncoder(w).Encode(resultMessage)
+}

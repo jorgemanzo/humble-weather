@@ -10,5 +10,7 @@ func main() {
 
 	http.HandleFunc("/insert_weather_state", httphandlers.InsertWeatherState)
 
+	http.HandleFunc("/select_weather_states", httphandlers.GetWeatherStatesByZipCode)
+
 	http.ListenAndServe(":8080", nil)
 }
