@@ -4,6 +4,7 @@ import { LocationsService } from '../locations.service';
 import { WeatherStatesService } from '../weather-states.service';
 import { SearchQuery } from '../search-query';
 import { ExecutionMessage } from '../execution-message';
+import { Weather } from '../weather';
 
 @Component({
   selector: 'app-search-page',
@@ -13,6 +14,7 @@ import { ExecutionMessage } from '../execution-message';
 export class SearchPageComponent implements OnInit {
 
   public query: SearchQuery;
+  public weatherStates: [Weather];
 
   constructor(
     public weatherApiService: WeatherApiService,
@@ -25,7 +27,7 @@ export class SearchPageComponent implements OnInit {
 
   getWeatherHistoryForLocation (query: SearchQuery) : void {
     this.weatherStatesService.selectWeatherStatesByQuery(query).subscribe(
-      res => console.log(res)
+      res => this.weatherStates = res.results
     )
   }
 
