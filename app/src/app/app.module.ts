@@ -12,6 +12,8 @@ import { SearchResultHistoryComponent } from './search-result-history/search-res
 
 import {MatTableModule} from '@angular/material/table'; 
 import {MatCardModule} from '@angular/material/card'; 
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule,
     HttpClientModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

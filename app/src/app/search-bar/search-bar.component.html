@@ -1,7 +1,9 @@
-<p>search-bar works!</p>
-<input 
-    [(ngModel)]="zipCode"
-/>
-<button (click)="go()">Go</button>
-
-<p>{{message}}</p>
+<div class="container">
+    <h2>Current Weather and Past Data</h2>
+    <mat-form-field class="example-full-width">
+        <mat-label>Postal Code</mat-label>
+        <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" [(ngModel)]="zipCode">
+        <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="go()">Go</button>
+</div>

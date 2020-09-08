@@ -1,0 +1,31 @@
+.example-full-width {
+    width: 100%;
+    margin: 15px;
+    height: 15px;
+}
+
+button {
+    margin-top: 15px;
+}
+
+.container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: calc(15px + 60 * ((100vw - 320px) / 680));
+    margin-right: calc(15px + 60 * ((100vw - 320px) / 680));
+}
+
+@media screen and (min-width: 320px) {
+    .example-full-width {
+        height: calc(15px + 13 * ((100vw - 320px) / 680));
+    }
+}
+@media screen and (min-width: 1000px) {
+    .example-full-width {
+        height: 28px;
+    }
+} 

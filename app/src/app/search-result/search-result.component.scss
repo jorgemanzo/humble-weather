@@ -11,12 +11,26 @@
 }
 @media screen and (min-width: 320px) {
     .content {
-        font-size: calc(12pt + 9 * ((100vw - 320px) / 680));
+        font-size: calc(12pt + 4 * ((100vw - 320px) / 680));
     }
 }
 @media screen and (min-width: 1000px) {
     .content {
-        font-size: 21pt;
+        font-size: 14pt;
+    }
+} 
+
+.title {
+    font-size: 16pt;
+}
+@media screen and (min-width: 320px) {
+    .title {
+        font-size: calc(16pt + 4 * ((100vw - 320px) / 680));
+    }
+}
+@media screen and (min-width: 1000px) {
+    .title {
+        font-size: 20pt;
     }
 } 
 
